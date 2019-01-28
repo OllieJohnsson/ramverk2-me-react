@@ -1,0 +1,11 @@
+.bio {
+    /* background-color: yellow; */
+    margin-bottom: 4rem;
+    line-height: 2rem;
+    opacity: 0;
+    animation: slideUp 1s cubic-bezier(0.19, 1, 0.30, 1) 0.1s forwards;
+}
+
+.bio h1 {
+    margin-bottom: 0.2rem;
+}
