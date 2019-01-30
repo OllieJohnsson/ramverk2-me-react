@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Title from '../components/Title';
 import Bio from '../components/Bio';
+
+// import LoginForm from '../components/LoginForm';
 
 
 class Home extends Component {
@@ -11,8 +12,14 @@ class Home extends Component {
             title: "Hem",
             name: "",
             city: "",
-            description: "",
+            description: ""
         };
+
+        this.getState.bind(this);
+    }
+
+    getState() {
+        return this.state;
     }
 
     componentWillMount() {
@@ -39,7 +46,6 @@ class Home extends Component {
 
         return (
             <main>
-            <Title title={this.state.title} />
             <Bio name={ this.state.name } city={ this.state.city } description={ this.state.description } />
             </main>
         );

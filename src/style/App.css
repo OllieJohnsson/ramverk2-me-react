@@ -76,7 +76,8 @@ main {
 
 
 code {
-    background-color: #D8DDE6;
+    background-color: #F0F1F3;
+    padding: 0.3rem;
 }
 
 main h1 {
@@ -131,6 +132,7 @@ main i {
 
 @media (max-width: 600px) {
     main {
-        padding: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 }

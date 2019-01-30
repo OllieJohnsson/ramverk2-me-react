@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import Markdown from 'react-markdown';
-import Title from '../components/Title';
 
 
 class Report extends Component {
     constructor(props) {
         super(props);
-        this.initialState();
-    }
-
-    initialState() {
         this.state = {
             kmom: this.props.match.params.kmom,
             questions: [],
@@ -17,14 +12,17 @@ class Report extends Component {
         };
     }
 
-    componentWillMount() {
+
+    componentDidMount() {
         this.loadData();
     }
 
-    componentDidUpdate() {
-        this.initialState();
-        this.loadData();
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.kmom !== this.props.match.params.kmom) {
+            this.loadData();
+        }
     }
+
 
     loadData() {
         fetch(`https://me-api.olliej.me/reports/${this.state.kmom}`)
@@ -32,6 +30,7 @@ class Report extends Component {
             return response.json();
         }).then((json) => {
             this.setState({
+                kmom: this.props.match.params.kmom,
                 questions: json.data,
                 message: json.message,
                 errors: json.errors
@@ -62,7 +61,7 @@ class Report extends Component {
 
         const questions = this.state.questions.map(x => {
             return (
-                <div className="question">
+                <div className="question" key={ String(x.rowid) }>
                 <h2>{x.question}</h2>
                 <Markdown source={x.answer} />
                 </div>
@@ -70,7 +69,6 @@ class Report extends Component {
         });
         return (
             <main>
-            <Title title="Report" />
             { questions }
             </main>
         )

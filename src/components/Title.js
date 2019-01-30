@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 
 
 class Title extends Component {
-    constructor(props) {
-        super(props);
+    // constructor(props) {
+    //     super(props);
         // this.title = props.title;
 
         // this.state = {
         //     title: props.title
         // }
-    };
+    // };
 
     // static navigationOptions = ({ navigation }) => {
     //   const { state } = navigation;
