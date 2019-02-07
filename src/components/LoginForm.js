@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import Input from './Input';
-import FormButton from './FormButton';
-import Message from './Message';
-
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+
+import Message from './Message';
 
 import '../style/Form.css';
 
@@ -54,8 +52,6 @@ class LoginForm extends Component {
     }
 
     render() {
-        console.log(this.state);
-
         const message = this.state.errorMessage ? <Message error={this.state.errorMessage} /> : null;
         return (
             <Form onSubmit={this.handleSubmit}>

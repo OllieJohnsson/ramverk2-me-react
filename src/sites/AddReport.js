@@ -4,10 +4,6 @@ import Title from '../components/Title';
 
 
 class AddReport extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <main>

@@ -17,7 +17,7 @@ class RadioSelect extends Component {
     render() {
         const options = this.props.options.map(x => {
             return (
-                <Form.Check checked={this.props.checked === x} type="radio" id={x} label={x} onChange={this.changeValue}/>
+                <Form.Check inline checked={this.props.checked === x} type="radio" id={x} label={x} onChange={this.changeValue}/>
             );
         });
         return(

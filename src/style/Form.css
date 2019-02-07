@@ -3,6 +3,12 @@ form {
     flex-direction: column;
     align-items: center;
     padding: 1rem;
+    max-width: 20rem;
+}
+
+textarea#report {
+    width: 20rem;
+    height: 10rem;
 }
 
 .form-control {
@@ -31,10 +37,7 @@ form {
 
 .btn:hover {
     animation: buttonHover 0.4s cubic-bezier(0.19, 1, 0.30, 1) 0.1s forwards;
-}
-
-.btn:hover {
-    border-color: #CD324E;
+    color: white;
 }
 
 

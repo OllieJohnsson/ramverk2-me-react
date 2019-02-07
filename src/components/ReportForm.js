@@ -6,7 +6,6 @@ import React, { Component } from 'react';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 import Message from './Message';
 import RadioSelect from './RadioSelect';
@@ -73,12 +72,13 @@ class ReportForm extends Component {
                 case "Uppdatera":
                     this.loadReports();
                     break;
+                default:
+                    break;
             }
         });
     }
 
     handleChangeQuestionToEdit(e) {
-        console.log("ändra fråga");
         this.setState({
             question: e.target.value,
             answer: this.state.answers[e.target.selectedIndex],
@@ -128,13 +128,14 @@ class ReportForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this.state);
         switch (this.state.chekedAction) {
             case "Lägg till":
                 this.addReport();
                 break;
             case "Uppdatera":
                 this.updateReport();
+                break;
+            default:
                 break;
         }
     }
