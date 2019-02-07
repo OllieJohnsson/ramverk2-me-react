@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
+import Input from './Input';
+import FormButton from './FormButton';
+import Message from './Message';
 
-const home = require('../sites/Home');
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
+import '../style/Form.css';
 
 class LoginForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            errorMessage: ""
         };
-
-
-        console.log(props.user.state);
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -38,55 +41,31 @@ class LoginForm extends Component {
         }).then(res => {
             return res.json();
         }).then(json => {
+            if(!json.token) {
+                return this.setState({
+                    errorMessage: json.errors[0].detail
+                });
+            }
             this.setState({
-                token: json.token
-            })
-            console.log(this.state);
-
-
-            // this.props.user.setState({
-            //     email: this.state.email,
-            //     token: json.token
-            // });
-
-            console.log(home.getState());
-
-            console.log(this.props.user);
+                errorMessage: ""
+            });
+            this.props.onTokenReceived(json.token);
         })
     }
 
-    handleRedirect(status, res) {
-
-        console.log(status);
-        if( res.status === 200 ){
-            console.log("success");
-            // redirect here
-
-            this.setState({
-                token: "hej"
-            })
-
-            console.log(this.state);
-
-        } else {
-            console.log("fail");
-          // Something went wrong here
-        }
-    }
-
     render() {
+        console.log(this.state);
+
+        const message = this.state.errorMessage ? <Message error={this.state.errorMessage} /> : null;
         return (
-            <form onSubmit={this.handleSubmit}>
-            <label>
-            Email:
-            <input type="email" name="email" value={this.state.email} onChange={this.handleChange} />
-            </label>
-            <label>
-            Password:
-            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
-            </label>
-            <input type="submit" value="Submit" />
-            </form>
+            <Form onSubmit={this.handleSubmit}>
+            <Form.Group controlId="login">
+            <Form.Control type="email" placeholder="E-post" name="email" onChange={this.handleChange} />
+            <Form.Control type="password" placeholder="Lösenord" name="password" onChange={this.handleChange} />
+            </Form.Group>
+            <Button type="submit">Logga in</Button>
+            {message}
+            </Form>
         );
     }
 }

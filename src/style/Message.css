@@ -1,0 +1,14 @@
+.message {
+    border: 1px solid;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    margin: 2rem;
+
+    opacity: 0;
+    animation: slideUp 1s cubic-bezier(0.19, 1, 0.30, 1) 0.1s forwards;
+}
+
+.message p {
+    font-size: 0.8rem;
+    margin: 0;
+}

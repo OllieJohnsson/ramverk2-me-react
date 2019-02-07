@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Markdown from 'react-markdown';
 
+import Title from '../components/Title';
+
 
 class Report extends Component {
     constructor(props) {
@@ -69,6 +71,7 @@ class Report extends Component {
         });
         return (
             <main>
+            <Title title={this.state.kmom.charAt(0).toUpperCase() + this.state.kmom.slice(1)}/>
             { questions }
             </main>
         )

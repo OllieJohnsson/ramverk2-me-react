@@ -1,0 +1,16 @@
+.formButton {
+    background-color: #0DD3BA;
+    border: none;
+    padding: 0.8rem 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.5);
+    max-width: 10rem;
+    cursor: pointer;
+}
+
+
+.btn {
+    background-color: orange;
+}

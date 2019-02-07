@@ -1,25 +1,14 @@
 import React, { Component } from 'react';
+import Title from '../components/Title';
 import LoginForm from '../components/LoginForm';
 
 
 class Login extends Component {
-    constructor(props) {
-        super(props);
-        console.log(props.user.state);
-
-        props.user.setState({
-            hej: "hehe"
-        })
-        this.state = {
-            title: "Logga in",
-            user: props.user
-        };
-    }
-
     render() {
         return (
             <main>
-            <LoginForm user={this.state.user}/>
+            <Title title="Logga in"/>
+            <LoginForm token={this.props.token} onTokenReceived={this.props.onTokenReceived}/>
             </main>
         );
     }

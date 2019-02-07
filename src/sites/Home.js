@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import Bio from '../components/Bio';
 
-// import LoginForm from '../components/LoginForm';
-
-
 class Home extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -14,12 +10,6 @@ class Home extends Component {
             city: "",
             description: ""
         };
-
-        this.getState.bind(this);
-    }
-
-    getState() {
-        return this.state;
     }
 
     componentWillMount() {

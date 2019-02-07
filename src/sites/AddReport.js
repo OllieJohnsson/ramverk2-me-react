@@ -1,23 +1,18 @@
 import React, { Component } from 'react';
 import ReportForm from '../components/ReportForm';
+import Title from '../components/Title';
 
 
 class AddReport extends Component {
     constructor(props) {
         super(props);
-
-        // console.log(props.user);
-        this.state = {
-            title: "Lägg till",
-            kmom: props.match.params.kmom,
-            user: props.user
-        };
     }
 
     render() {
         return (
             <main>
-            <ReportForm user={this.state.user}/>
+            <Title title="Lägg till redovisningstext" />
+            <ReportForm token={this.props.token} kmoms={this.props.kmoms}/>
             </main>
         );
     }

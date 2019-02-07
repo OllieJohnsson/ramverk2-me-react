@@ -16,7 +16,7 @@ class Bio extends Component {
         return(
             <div className="bio">
             <h1>{this.state.name}</h1>
-            <i>{this.state.city}</i>
+            <p className="subtitle">{this.state.city}</p>
             <p>{this.state.description}</p>
             </div>
         )

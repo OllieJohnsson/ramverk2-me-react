@@ -1,0 +1,30 @@
+label input,
+label textarea {
+    background-color: white;
+    border: 1px solid #D3D8E1;
+    padding: 0.8rem;
+    border-radius: 0.4rem;
+    font-size: 0.8rem;
+}
+
+label:not(:first-child) input,
+label:not(:first-child) textarea {
+    margin-top: 0.5rem;
+}
+
+
+label input::placeholder,
+label input::placeholder {
+    color: #B7BBC8;
+}
+
+label input[type=number]::-webkit-inner-spin-button,
+label input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+label textarea {
+    min-width: 20rem;
+    min-height: 10rem;
+}
