@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
@@ -65,5 +65,17 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 
 ### `npm run build` fails to minify
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify -->
+
+
+
+
 # ramverk2-me-react
+
+
+###Use cases
+
+* Användaren ska från förstasidan kunna trycka på en länk för att se redovisningstexten för kmom01.
+* Användaren ska från förstasidan kunna trycka på en länk för att komma till /login.
+* Användaren ska från förstasidan kunna gå till /login, logga in med e-post och lösenord och sen kunna nå /add/reports via navbaren.
+* Användaren ska kunna logga in och sen ut och länken för att lägga till redovisningstext ska försvinna från navbaren.
