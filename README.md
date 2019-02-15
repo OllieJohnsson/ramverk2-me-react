@@ -73,7 +73,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 # ramverk2-me-react
 
 
-###Use cases
+### Use cases
 
 * Användaren ska från förstasidan kunna trycka på en länk för att se redovisningstexten för kmom01.
 * Användaren ska från förstasidan kunna trycka på en länk för att komma till /login.
