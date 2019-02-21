@@ -16,7 +16,7 @@ class Chat extends Component {
             message: "",
             websocket: null,
             log: [],
-            url: "ws://localhost:1337"
+            url: "wss://chat.olliej.me"
         };
 
         this.handleChange = this.handleChange.bind(this);
