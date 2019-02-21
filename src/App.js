@@ -11,11 +11,13 @@ import history from './history'
 import './style/App.css';
 import './style/Home.css';
 import './style/Report.css';
+// import './style/Form.css';
 
 import Home from './sites/Home.js';
 import Report from './sites/Report.js';
 import AddReport from './sites/AddReport.js';
 import Login from './sites/Login.js';
+import Chat from './sites/Chat.js';
 
 
 
@@ -108,13 +110,15 @@ class App extends Component {
             </LinkContainer>
 
             <NavDropdown title="Redovisningar" id="basic-nav-dropdown">
-
             {kmomButtons}
-
             </NavDropdown>
 
             {addReportButton}
             {loginLogoutButton}
+
+            <LinkContainer to="/chat">
+            <Nav.Link>Chat</Nav.Link>
+            </LinkContainer>
 
             </Nav>
             </Navbar.Collapse>
@@ -123,6 +127,7 @@ class App extends Component {
             <Route path="/reports/:kmom" component={Report} />
             <Route path="/add/reports" render={(props) => <AddReport {...props} token={this.state.token} kmoms={this.state.kmoms} />} />
             <Route path="/login" render={(props) => <Login {...props} onTokenReceived={this.handleReceivedToken} />} />
+            <Route path="/chat" component={Chat} />
             </div>
             </Router>
         );

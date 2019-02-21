@@ -1,0 +1,33 @@
+#log {
+    border: 1px solid #D3D8E1;
+    width: 600px;
+    height: 200px;
+    overflow: scroll;
+    font-size: smaller;
+    padding: 1rem 0;
+    border-radius: .25rem;
+    margin: 2rem 0;
+}
+
+.logMessage {
+    display: flex;
+    padding: 0.5rem;
+}
+
+.logMessage > * {
+    padding: 0.5rem;
+}
+
+.logTimestamp {
+    color: #AFB3BA;
+}
+
+.logUser {
+    display: flex;
+    /* background-color: lime; */
+    white-space: pre;
+}
+
+.logNickname {
+    color: #ED3B59;
+}
