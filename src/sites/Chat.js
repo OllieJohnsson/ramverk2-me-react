@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import Title from "../components/Title";
+import Message from "../components/Message";
 
 import '../style/Chat.css';
 
@@ -16,7 +16,8 @@ class Chat extends Component {
             message: "",
             websocket: null,
             log: [],
-            url: "wss://chat.olliej.me"
+            url: "wss://chat.olliej.me",
+            error: null
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -80,15 +81,17 @@ class Chat extends Component {
 
     handleConnect(event) {
         event.preventDefault();
-
+        this.setState({error: null});
         if (!this.state.nickname) {
+            this.setState({error: "You need to enter a name"});
+            document.getElementById("connect").focus();
             return console.log("You need to enter a name");
         }
 
         let chat = this;
 
-        // let websocket = new WebSocket("ws://localhost:1337", "json");
-        let websocket = new WebSocket(this.state.url, "json");
+        let websocket = new WebSocket("ws://localhost:1337", "json");
+        // let websocket = new WebSocket(this.state.url, "json");
         websocket.onopen = function () {
             let data = {
                 timestamp: Date(),
@@ -117,8 +120,12 @@ class Chat extends Component {
             chat.setState({connected: false});
         }
 
+        websocket.onerror = function() {
+            console.log("error");
+        }
 
 
+        console.log(websocket);
         this.setState({
             websocket: websocket
         });
@@ -128,7 +135,10 @@ class Chat extends Component {
 
     handleSend(event) {
         event.preventDefault();
+        this.setState({error: null});
         if (!this.state.message) {
+            this.setState({error: "You need to enter a message!"});
+            document.getElementById("message").focus();
             return console.log("You need to enter a message!");
         }
 
@@ -189,13 +199,17 @@ class Chat extends Component {
         });
 
 
+        let errorMessage = this.state.error ? <Message error={this.state.error}/> : null;
+
+
 
         return (
             <main>
             <Title title="Chat"></Title>
 
-            <Form.Control type="text" placeholder="URL" name="url" value={this.state.url} onChange={this.handleChange} />
+            <Form.Control id="url" type="text" placeholder="URL" name="url" value={this.state.url} onChange={this.handleChange} />
 
+            <div id="userArea">
             <Form inline onSubmit={ this.state.connected ? this.handleClose : this.handleConnect}>
                 <Form.Group controlId="connect">
                     <Form.Control style={{marginBottom: "0"}} type="text" placeholder="Nickname" name="nickname" value={this.state.nickname} onChange={this.handleChange} />
@@ -204,12 +218,15 @@ class Chat extends Component {
             </Form>
             <Form inline onSubmit={this.handleSend}>
                 <Form.Group controlId="message">
-                    <Form.Control autocomplete="off" style={{marginBottom: "0"}} type="text" placeholder="Message" name="message" value={this.state.message} onChange={this.handleChange} />
+                    <Form.Control autoComplete="off" style={{marginBottom: "0"}} type="text" placeholder="Message" name="message" value={this.state.message} onChange={this.handleChange} />
                     <Form.Control type="submit" value="Send" />
                 </Form.Group>
             </Form>
+            </div>
 
             <div id="log">{ messages }</div>
+
+            {errorMessage}
 
             </main>
         );

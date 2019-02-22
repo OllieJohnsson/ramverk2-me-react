@@ -1,12 +1,23 @@
 #log {
     border: 1px solid #D3D8E1;
-    width: 600px;
+    width: 40rem;
     height: 200px;
     overflow: scroll;
     font-size: smaller;
     padding: 1rem 0;
     border-radius: .25rem;
     margin: 2rem 0;
+}
+
+#url {
+    width: 40rem;
+    margin-bottom: 2rem;
+}
+
+#userArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .logMessage {
@@ -24,7 +35,6 @@
 
 .logUser {
     display: flex;
-    /* background-color: lime; */
     white-space: pre;
 }
 

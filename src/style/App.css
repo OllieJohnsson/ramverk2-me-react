@@ -169,5 +169,17 @@ main .subtitle {
     main {
         padding-left: 1rem;
         padding-right: 1rem;
+
+        align-items: stretch;
+    }
+
+    #log,
+    #url,
+    #userArea {
+        max-width: 100%;
+    }
+
+    #userArea {
+        align-items: stretch;
     }
 }
