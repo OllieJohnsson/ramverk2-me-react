@@ -90,8 +90,8 @@ class Chat extends Component {
 
         let chat = this;
 
-        let websocket = new WebSocket("ws://localhost:1337", "json");
-        // let websocket = new WebSocket(this.state.url, "json");
+        // let websocket = new WebSocket("ws://localhost:1337", "json");
+        let websocket = new WebSocket(this.state.url, "json");
         websocket.onopen = function () {
             let data = {
                 timestamp: Date(),
