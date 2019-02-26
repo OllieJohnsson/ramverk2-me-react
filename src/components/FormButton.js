@@ -11,7 +11,7 @@ class FormButton extends Component {
 
     render() {
         return(
-            <input className="formButton" type="submit" value={this.state.title} />
+            <input className="formButton" type="submit" value={this.state.title} hidden={this.props.hidden} />
         );
     }
 }

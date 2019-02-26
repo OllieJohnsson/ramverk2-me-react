@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Title from "../components/Title";
 import Message from "../components/Message";
+import FormButton from "../components/FormButton";
 
 import '../style/Chat.css';
 
@@ -9,6 +10,8 @@ import '../style/Chat.css';
 class Chat extends Component {
     constructor(props) {
         super(props);
+
+        let url = process.env.NODE_ENV === "development" ? "ws://localhost:1338" : "wss://chat.olliej.me";
         this.state = {
             connected: false,
             title: "Chat",
@@ -16,7 +19,7 @@ class Chat extends Component {
             message: "",
             websocket: null,
             log: [],
-            url: "wss://chat.olliej.me",
+            url: url,
             error: null
         };
 
@@ -25,6 +28,9 @@ class Chat extends Component {
         this.handleSend = this.handleSend.bind(this);
         this.handleClose = this.handleClose.bind(this);
         this.log = this.log.bind(this);
+        this.saveLog = this.saveLog.bind(this)
+        this.loadLog = this.loadLog.bind(this)
+        this.clearLog = this.clearLog.bind(this)
     }
 
 
@@ -89,14 +95,14 @@ class Chat extends Component {
         }
 
         let chat = this;
-
-        // let websocket = new WebSocket("ws://localhost:1337", "json");
         let websocket = new WebSocket(this.state.url, "json");
         websocket.onopen = function () {
+
             let data = {
                 timestamp: Date(),
                 message: `You connected as ${chat.state.nickname}!`
             };
+
             chat.log(JSON.stringify(data));
 
             data.message = `${chat.state.nickname} connected to the chat`;
@@ -108,6 +114,16 @@ class Chat extends Component {
 
 
         websocket.onmessage = function(message) {
+            let data = JSON.parse(message.data);
+
+            if (data.type === "log") {
+                let logStrings = data.log.map(x => {
+                    return JSON.stringify(x);
+                });
+                chat.setState({log: logStrings});
+                return;
+            }
+
             chat.log(message.data);
         }
 
@@ -181,8 +197,26 @@ class Chat extends Component {
     }
 
 
+    saveLog(event) {
+        event.preventDefault();
+        console.log("SAVE");
+        let log = "[" + this.state.log.join(",") + "]";
+        this.state.websocket.send(JSON.stringify({type: "save", nickname: this.state.nickname, log: log}));
+    }
+
+    loadLog(event) {
+        event.preventDefault();
+        console.log("LOAD");
+        this.state.websocket.send(JSON.stringify({type: "load", nickname: this.state.nickname}));
+    }
+
+    clearLog(event) {
+        event.preventDefault();
+        this.setState({log: []});
+    }
 
     render() {
+        console.log(this.state);
         let messages = this.state.log.map((message, index) => {
             let obj = JSON.parse(message);
             let date = new Date(obj.timestamp)
@@ -201,7 +235,9 @@ class Chat extends Component {
 
         let errorMessage = this.state.error ? <Message error={this.state.error}/> : null;
 
-
+        let saveButton = <button onClick={this.saveLog}>Save</button>;
+        let loadButton = <button onClick={this.loadLog}>Load</button>;
+        let clearButton = <button onClick={this.clearLog}>Clear</button>;
 
         return (
             <main>
@@ -212,7 +248,7 @@ class Chat extends Component {
             <div id="userArea">
             <Form inline onSubmit={ this.state.connected ? this.handleClose : this.handleConnect}>
                 <Form.Group controlId="connect">
-                    <Form.Control style={{marginBottom: "0"}} type="text" placeholder="Nickname" name="nickname" value={this.state.nickname} onChange={this.handleChange} />
+                    <Form.Control autoComplete="off" style={{marginBottom: "0"}} type="text" placeholder="Nickname" name="nickname" value={this.state.nickname} onChange={this.handleChange} />
                     <Form.Control type="submit" value={ this.state.connected ? "Disconnect" : "Connect" } />
                 </Form.Group>
             </Form>
@@ -225,6 +261,10 @@ class Chat extends Component {
             </div>
 
             <div id="log">{ messages }</div>
+
+            {saveButton}
+            {loadButton}
+            {clearButton}
 
             {errorMessage}
 
