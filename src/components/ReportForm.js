@@ -237,7 +237,7 @@ class ReportForm extends Component {
             <Form.Control as="textarea" rows="3" placeholder="Svar" name="answer" value={this.state.answer} onChange={this.handleChangeAnswer} />
             </Form.Group>
 
-            <Button variant="light" type="submit">
+            <Button style={{margin: 0}} variant="light" type="submit">
               {this.state.chekedAction}
             </Button>
 

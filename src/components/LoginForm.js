@@ -59,7 +59,8 @@ class LoginForm extends Component {
             <Form.Control type="email" placeholder="E-post" name="email" onChange={this.handleChange} />
             <Form.Control type="password" placeholder="Lösenord" name="password" onChange={this.handleChange} />
             </Form.Group>
-            <Button type="submit">Logga in</Button>
+
+            <Form.Control style={{margin: 0}} type="submit" value="Logga in" />
             {message}
             </Form>
         );

@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Title from "../components/Title";
 import Message from "../components/Message";
-import FormButton from "../components/FormButton";
+// import FormButton from "../components/FormButton";
 
 import '../style/Chat.css';
+import '../style/Form.css';
+
 
 
 class Chat extends Component {
@@ -216,7 +218,6 @@ class Chat extends Component {
     }
 
     render() {
-        console.log(this.state);
         let messages = this.state.log.map((message, index) => {
             let obj = JSON.parse(message);
             let date = new Date(obj.timestamp)
@@ -235,9 +236,9 @@ class Chat extends Component {
 
         let errorMessage = this.state.error ? <Message error={this.state.error}/> : null;
 
-        let saveButton = <button onClick={this.saveLog}>Save</button>;
-        let loadButton = <button onClick={this.loadLog}>Load</button>;
-        let clearButton = <button onClick={this.clearLog}>Clear</button>;
+        let saveButton = this.state.connected ? <button className="btn" onClick={this.saveLog}>Save</button> : null;
+        let loadButton = this.state.connected ? <button className="btn" onClick={this.loadLog}>Load</button> : null;
+        let clearButton = this.state.log.length > 0 ? <button className="btn red" onClick={this.clearLog}>Clear</button> : null;
 
         return (
             <main>
@@ -249,7 +250,7 @@ class Chat extends Component {
             <Form inline onSubmit={ this.state.connected ? this.handleClose : this.handleConnect}>
                 <Form.Group controlId="connect">
                     <Form.Control autoComplete="off" style={{marginBottom: "0"}} type="text" placeholder="Nickname" name="nickname" value={this.state.nickname} onChange={this.handleChange} />
-                    <Form.Control type="submit" value={ this.state.connected ? "Disconnect" : "Connect" } />
+                    <Form.Control  className={ this.state.connected ? "red" : "green" } type="submit" value={ this.state.connected ? "Disconnect" : "Connect" } />
                 </Form.Group>
             </Form>
             <Form inline onSubmit={this.handleSend}>
@@ -262,9 +263,12 @@ class Chat extends Component {
 
             <div id="log">{ messages }</div>
 
-            {saveButton}
-            {loadButton}
-            {clearButton}
+            <div className="actionButtons">
+                {saveButton}
+                {loadButton}
+                {clearButton}
+            </div>
+
 
             {errorMessage}
 

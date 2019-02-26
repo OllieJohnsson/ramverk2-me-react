@@ -41,3 +41,16 @@
 .logNickname {
     color: #ED3B59;
 }
+
+
+.actionButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.actionButtons > button {
+    margin: 1rem;
+}

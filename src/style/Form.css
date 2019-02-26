@@ -27,25 +27,45 @@ textarea#report {
 
 .btn,
 input[type="submit"] {
-    background-image: linear-gradient(-20deg, #ED4D5F, #EF6537 70%);
-    border: none;
+    /* background-image: linear-gradient(-20deg, #ED4D5F, #EF6537 70%); */
+    border: 1px solid #D3D8E1;
     font-size: 0.8rem;
-    color: white;
+    color: #434548;
     padding: 0.5rem 1rem;
-    border-radius: 0.4rem;
-    /* box-shadow: 0.3rem 0.4rem 1.5rem 0.1rem rgba(237, 77, 95, 0.7) */
+    border-radius: 2rem;
     margin-left: 1rem;
+    transition: 0.3s;
+    font-weight: bold;
 }
 
 
 
 .btn:hover,
 input[type="submit"]:hover {
-    animation: buttonHover 0.4s cubic-bezier(0.19, 1, 0.30, 1) 0.1s forwards;
-    color: white;
+    /* animation: buttonHover 0.4s cubic-bezier(0.19, 1, 0.30, 1) 0.1s forwards; */
+    /* color: white; */
+    background-color: #D3D8E1;
     cursor: pointer;
+    /* font-weight: bold; */
 }
 
+.green {
+    border: 1px solid #47D160 !important;
+    color: #47D160 !important;
+}
+.green:hover {
+    background-color: #47D160 !important;
+    color: white !important;
+}
+
+.red {
+    border: 1px solid #ED3B59 !important;
+    color: #ED3B59 !important;
+}
+.red:hover {
+    background-color: #ED3B59 !important;
+    color: white !important;
+}
 
 
 @keyframes buttonHover {

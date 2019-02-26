@@ -11,7 +11,7 @@ import history from './history'
 import './style/App.css';
 import './style/Home.css';
 import './style/Report.css';
-// import './style/Form.css';
+
 
 import Home from './sites/Home.js';
 import Report from './sites/Report.js';
